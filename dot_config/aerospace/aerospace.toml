@@ -13,6 +13,7 @@ default-root-container-layout = 'tiles'
 
 # Mouse follows focus when focused monitor changes
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
+on-focus-changed = ['move-mouse window-lazy-center']
 
 [gaps]
 	inner.horizontal = 8
@@ -81,3 +82,12 @@ on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
     l = 'resize width +50'
     enter = 'mode main'
     esc = 'mode main'
+
+# App overrides
+[[on-window-detected]]
+if.app-id = 'cc.ffitch.shottr'
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = 'org.gimp.gimp-2.10'
+run = ['layout floating']
