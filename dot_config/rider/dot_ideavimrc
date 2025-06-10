@@ -1,0 +1,92 @@
+" You can find a list of commands here: https://jb.gg/h38q75
+
+set number                        " line numbers
+set visualbell                    " no sound bell
+
+set hlsearch                      " highlight search occurrences
+set ignorecase                    " ignore case in search patterns
+set smartcase                     " no ignore case when pattern is uppercase
+set incsearch                     " show search results while typing
+set wrapscan                      " searches wrap around the end of the file
+
+set scrolloff=5 sidescrolloff=10  " keep some lines before and after the cursor visible
+set clipboard+=unnamed            " integrate with system clipboard
+set commentary
+set easymotion
+set NERDTree
+
+map <space> <nop>
+let mapleader=" "
+
+" Plugins 
+Plug 'machakann/vim-highlightedyank' " Highlight copied text
+Plug 'tpope/vim-commentary'          " Commentary plugin
+
+" General
+vnoremap <leader>p "_dP
+nnoremap <c-h> :action PreviousTab<CR>
+nnoremap <c-l> :action NextTab<CR>
+nnoremap U <c-r>
+nnoremap <leader>k :noh<cr>
+nnoremap <ESC> :noh<cr>
+
+" Better Navigation
+nnoremap H ^
+nnoremap L $
+nnoremap { }
+nnoremap } {
+nnoremap <c-j> <c-d>
+nnoremap <c-k> <c-u>
+
+" Refactoring
+nmap <leader>cf :action CodeCleanup<CR>
+vmap <leader>cf :action CodeCleanup<CR>
+nmap <leader>ca :action ShowIntentionActions<CR>
+vmap <leader>ca :action ShowIntentionActions<CR>
+nmap <leader>r :action RenameElement<CR>
+vmap <leader>r :action RenameElement<CR>
+nmap <leader>k :action ShowErrorDescription<CR>
+vmap <leader>k :action ShowErrorDescription<CR>
+
+" Go to code
+nmap gd :action GotoDeclaration<CR>
+nmap gy :action GotoTypeDeclaration<CR>
+nmap gi :action GotoImplementation<CR>
+nmap gu :action ShowUsages<CR>
+nmap gU :action FindUsages<CR>
+nmap gt :action GotoTest<CR>
+nmap ge :action GotoNextError<CR>
+nmap gE :action GotoPreviousError<CR>
+nmap gc :action ChangesView.ToggleCommitUi<CR>
+
+" Fuzzy finder (mimic Telescope)
+nmap <leader>sg :action SearchEverywhere<CR>
+nmap <leader>sc :action GotoClass<CR>
+nmap <leader>sf :action GotoFile<CR>
+
+" Move lines
+nnoremap <A-k> :m-2<CR>
+nnoremap <A-j> :m+<CR>
+inoremap <A-k> <Esc>:m-2<CR>
+inoremap <A-j> <Esc>:m+<CR>
+vnoremap <A-k> :m '<-2<CR>gv=gv
+vnoremap <A-j> :m '>+1<CR>gv=gv
+
+" NERDTree
+nmap <leader>n :NERDTree<CR>
+let g:NERDTreeMapPreview="<Tab>"
+
+" Easy motion
+nmap <leader>f <Plug>(easymotion-s)
+
+" Marks
+for l in split('abcdefghijklmnopqrstuvwxyz', '\zs')
+    execute 'nnoremap m' . l . ' m' . toupper(l)
+    execute 'nnoremap `' . l . ' `' . toupper(l)
+    execute 'nnoremap M' . l . ' :delm ' . toupper(l) . '<CR>'
+    execute 'nnoremap M' . toupper(l) . ' :delm ' . toupper(l) . '<CR>'
+endfor
+
+" commands
+command! CR :action CloseAllToTheRight
+command! CL :action CloseAllToTheLeft
