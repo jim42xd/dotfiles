@@ -1,6 +1,6 @@
 # Reference: https://github.com/i3/i3/blob/next/etc/config
 
-after-startup-command = ['exec-and-forget borders active_color=gradient(top_right=0xFF8752A3,botton_left=0xFF6274E7) inactive_color=0x00000000 width=7.0']
+after-startup-command = ['exec-and-forget borders']
 
 # i3 doesn't have "normalizations" feature that why we disable them here.
 # But the feature is very helpful.
