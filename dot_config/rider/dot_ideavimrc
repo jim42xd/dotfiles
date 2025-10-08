@@ -33,8 +33,8 @@ nnoremap <ESC> :noh<cr>
 " Better Navigation
 nnoremap H ^
 nnoremap L $
-nnoremap { }
-nnoremap } {
+nnoremap { <c-d>
+nnoremap } <c-u>
 nnoremap <c-j> <c-d>
 nnoremap <c-k> <c-u>
 
